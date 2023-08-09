@@ -10,6 +10,7 @@ class FirstPage extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
   User user = User();
   FirstPage({super.key});
 
@@ -39,6 +40,15 @@ class FirstPage extends StatelessWidget {
                     border: OutlineInputBorder(),
                     labelText: 'IC',
                   ),
+                ),
+                const SizedBox(height: 10),
+                TextField(
+                  controller: ageController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Umur',
+                  ),
+                  keyboardType: TextInputType.number,
                 ),
                 const SizedBox(height: 10),
                 TextField(
@@ -75,6 +85,7 @@ class FirstPage extends StatelessWidget {
                           user.email = emailController.text;
                           user.phone = phoneController.text;
                           user.address = addressController.text;
+                          user.umur = ageController.text as int;
 
                           Navigator.push(
                             context,
@@ -94,6 +105,7 @@ class FirstPage extends StatelessWidget {
                           emailController.clear();
                           phoneController.clear();
                           addressController.clear();
+                          ageController.clear();
                         },
                         child: const Text('Reset'),
                       ),
