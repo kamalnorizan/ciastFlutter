@@ -4,6 +4,7 @@ import '../Model/user.dart';
 
 class UserDetailScreen extends StatelessWidget {
   User user = User();
+
   UserDetailScreen(this.user, {super.key});
 
   @override
@@ -25,15 +26,15 @@ class UserDetailScreen extends StatelessWidget {
               ),
               Text(
                 user.nama.toString(),
-                style: TextStyle(fontSize: 30),
+                style: const TextStyle(fontSize: 30),
               ),
               Text(
                 user.ic != '' ? user.ic.toString() : 'N/A',
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
               ),
               Text(
                 user.umur.toString(),
-                style: TextStyle(fontSize: 30),
+                style: const TextStyle(fontSize: 30),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -42,7 +43,7 @@ class UserDetailScreen extends StatelessWidget {
                   const SizedBox(width: 5),
                   Text(
                     user.email ?? 'N/A',
-                    style: TextStyle(fontSize: 20),
+                    style: const TextStyle(fontSize: 20),
                   ),
                 ],
               ),
@@ -53,13 +54,13 @@ class UserDetailScreen extends StatelessWidget {
                   const SizedBox(width: 5),
                   Text(
                     user.phone != '' ? user.phone.toString() : 'N/A',
-                    style: TextStyle(fontSize: 20),
+                    style: const TextStyle(fontSize: 20),
                   ),
                 ],
               ),
               Text(
                 user.address.toString(),
-                style: TextStyle(fontSize: 30),
+                style: const TextStyle(fontSize: 30),
               ),
             ],
           ),

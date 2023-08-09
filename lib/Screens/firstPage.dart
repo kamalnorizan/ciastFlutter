@@ -3,16 +3,31 @@ import 'package:flutter/material.dart';
 import '../Model/user.dart';
 import 'userDetailScreen.dart';
 
-class FirstPage extends StatelessWidget {
-  final String btnTitle = 'Hantar';
-  TextEditingController nameController = TextEditingController();
-  TextEditingController icController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
-  TextEditingController ageController = TextEditingController();
-  User user = User();
+class FirstPage extends StatefulWidget {
   FirstPage({super.key});
+
+  @override
+  State<FirstPage> createState() => _FirstPageState();
+}
+
+class _FirstPageState extends State<FirstPage> {
+  final String btnTitle = 'Hantar';
+
+  TextEditingController nameController = TextEditingController();
+
+  TextEditingController icController = TextEditingController();
+
+  TextEditingController emailController = TextEditingController();
+
+  TextEditingController phoneController = TextEditingController();
+
+  TextEditingController addressController = TextEditingController();
+
+  TextEditingController ageController = TextEditingController();
+
+  User user = User();
+
+  List<User> userList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +41,14 @@ class FirstPage extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
+                Container(
+                  width: double.infinity,
+                  child: Text(
+                    'Jumlah User: ${userList.length}',
+                    style: const TextStyle(fontSize: 30),
+                    textAlign: TextAlign.end,
+                  ),
+                ),
                 TextField(
                   controller: nameController,
                   decoration: const InputDecoration(
@@ -89,11 +112,20 @@ class FirstPage extends StatelessWidget {
                               ? user.umur = int.parse(ageController.text)
                               : user.umur = 0;
 
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => UserDetailScreen(user)),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => UserDetailScreen(user)),
+                          // );
+                          setState(() {
+                            userList.add(user);
+                            nameController.clear();
+                            icController.clear();
+                            emailController.clear();
+                            phoneController.clear();
+                            addressController.clear();
+                            ageController.clear();
+                          });
                         },
                         child: Text(btnTitle),
                       ),
