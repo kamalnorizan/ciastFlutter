@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'Model/user.dart';
+import '../Model/user.dart';
+import 'userDetailScreen.dart';
 
 class FirstPage extends StatelessWidget {
   final String btnTitle = 'Hantar';
@@ -75,7 +76,11 @@ class FirstPage extends StatelessWidget {
                           user.phone = phoneController.text;
                           user.address = addressController.text;
 
-                          print(user);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => UserDetailScreen(user)),
+                          );
                         },
                         child: Text(btnTitle),
                       ),
