@@ -85,7 +85,9 @@ class FirstPage extends StatelessWidget {
                           user.email = emailController.text;
                           user.phone = phoneController.text;
                           user.address = addressController.text;
-                          user.umur = ageController.text as int;
+                          ageController.text != ''
+                              ? user.umur = int.parse(ageController.text)
+                              : user.umur = 0;
 
                           Navigator.push(
                             context,

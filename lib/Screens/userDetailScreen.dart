@@ -12,12 +12,49 @@ class UserDetailScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Maklumat Pengguna'),
         ),
-        body: Column(
-          children: [
-            Text(user.nama.toString()),
-            Text(user.ic != '' ? user.ic.toString() : 'N/A'),
-            Text(user.email ?? 'N/A'),
-          ],
+        body: Container(
+          width: double.infinity,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              const SizedBox(
+                height: 10,
+              ),
+              const CircleAvatar(
+                radius: 60,
+              ),
+              Text(
+                user.nama.toString(),
+                style: TextStyle(fontSize: 30),
+              ),
+              Text(
+                user.ic != '' ? user.ic.toString() : 'N/A',
+                style: TextStyle(fontSize: 20),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.email),
+                  const SizedBox(width: 5),
+                  Text(
+                    user.email ?? 'N/A',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.phone_android),
+                  const SizedBox(width: 5),
+                  Text(
+                    user.phone != '' ? user.phone.toString() : 'N/A',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ));
   }
 }
