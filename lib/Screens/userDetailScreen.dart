@@ -31,6 +31,10 @@ class UserDetailScreen extends StatelessWidget {
                 user.ic != '' ? user.ic.toString() : 'N/A',
                 style: TextStyle(fontSize: 20),
               ),
+              Text(
+                user.umur.toString(),
+                style: TextStyle(fontSize: 30),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -52,6 +56,10 @@ class UserDetailScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 20),
                   ),
                 ],
+              ),
+              Text(
+                user.address.toString(),
+                style: TextStyle(fontSize: 30),
               ),
             ],
           ),
