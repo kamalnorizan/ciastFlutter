@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myflutter/Screens/senaraiPenggunaScreen.dart';
 
 import '../Model/user.dart';
 import 'userDetailScreen.dart';
@@ -134,6 +135,9 @@ class _FirstPageState extends State<FirstPage> {
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () {
+                          setState(() {
+                            userList.clear();
+                          });
                           nameController.clear();
                           icController.clear();
                           emailController.clear();
@@ -142,6 +146,21 @@ class _FirstPageState extends State<FirstPage> {
                           ageController.clear();
                         },
                         child: const Text('Reset'),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  SenaraiPenggunaScreen(userList),
+                            ),
+                          );
+                        },
+                        child: const Text('Senarai'),
                       ),
                     ),
                   ],
