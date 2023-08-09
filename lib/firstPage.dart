@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'Model/user.dart';
+
 class FirstPage extends StatelessWidget {
   final String btnTitle = 'Hantar';
   TextEditingController nameController = TextEditingController();
@@ -7,7 +9,7 @@ class FirstPage extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
-
+  User user = User();
   FirstPage({super.key});
 
   @override
@@ -66,7 +68,15 @@ class FirstPage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          user.nama = nameController.text;
+                          user.ic = icController.text;
+                          user.email = emailController.text;
+                          user.phone = phoneController.text;
+                          user.address = addressController.text;
+
+                          print(user);
+                        },
                         child: Text(btnTitle),
                       ),
                     ),
