@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:myflutter/Screens/userDetailScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Model/user.dart';
@@ -91,6 +92,12 @@ class _SenaraiPenggunaScreenState extends State<SenaraiPenggunaScreen> {
               itemCount: userList!.length,
               itemBuilder: (context, index) {
                 return ListTile(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => UserDetailScreen(userList![index]),
+                    ),
+                  ),
                   leading: const CircleAvatar(),
                   title: Text(userList![index].name.toString()),
                   subtitle: Text(userList![index].email.toString()),

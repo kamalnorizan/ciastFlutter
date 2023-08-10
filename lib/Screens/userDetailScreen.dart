@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../Model/user.dart';
+import '../Model/userRequestModel.dart';
 
 class UserDetailScreen extends StatelessWidget {
-  User user = User();
+  UserModel user = UserModel();
 
   UserDetailScreen(this.user, {super.key});
 
@@ -21,19 +22,20 @@ class UserDetailScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const CircleAvatar(
+              CircleAvatar(
+                backgroundImage: NetworkImage(user.profilepicture.toString()),
                 radius: 60,
               ),
               Text(
-                user.nama.toString(),
+                user.name.toString(),
                 style: const TextStyle(fontSize: 30),
               ),
               Text(
-                user.ic != '' ? user.ic.toString() : 'N/A',
+                user.email != '' ? user.email.toString() : 'N/A',
                 style: const TextStyle(fontSize: 20),
               ),
               Text(
-                user.umur.toString(),
+                user.location.toString(),
                 style: const TextStyle(fontSize: 30),
               ),
               Row(
@@ -47,21 +49,21 @@ class UserDetailScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.phone_android),
-                  const SizedBox(width: 5),
-                  Text(
-                    user.phone != '' ? user.phone.toString() : 'N/A',
-                    style: const TextStyle(fontSize: 20),
-                  ),
-                ],
-              ),
-              Text(
-                user.address.toString(),
-                style: const TextStyle(fontSize: 30),
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     const Icon(Icons.phone_android),
+              //     const SizedBox(width: 5),
+              //     Text(
+              //       user.phone != '' ? user.phone.toString() : 'N/A',
+              //       style: const TextStyle(fontSize: 20),
+              //     ),
+              //   ],
+              // ),
+              // Text(
+              //   user.address.toString(),
+              //   style: const TextStyle(fontSize: 30),
+              // ),
             ],
           ),
         ));
