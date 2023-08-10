@@ -23,8 +23,24 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    emailController.text = 'Developer5@gmail.com';
-    passwordController.text = '123456';
+    emailController.text = 'saiful123@gmail.com';
+    passwordController.text = 'saiful123';
+  }
+
+  String? _validateUsername(String? value) {
+    if (value == '') {
+      return 'Please enter your email';
+    }
+
+    return null;
+  }
+
+  String? _validatePassword(String? value) {
+    if (value == '') {
+      return 'Please enter your password';
+    }
+
+    return null;
   }
 
   @override
@@ -48,6 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 20,
                 ),
                 TextFormField(
+                  validator: _validateUsername,
                   controller: emailController,
                   // initialValue: 'Developer5@gmail.com',
                   decoration: const InputDecoration(
@@ -59,6 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 20,
                 ),
                 TextFormField(
+                  validator: _validatePassword,
                   controller: passwordController,
                   obscureText: true,
                   decoration: const InputDecoration(
@@ -104,31 +122,33 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   login() async {
-    var data = {
-      'email': emailController.text,
-      'password': passwordController.text
-    };
+    if (_formKey.currentState!.validate()) {
+      var data = {
+        'email': emailController.text,
+        'password': passwordController.text
+      };
 
-    String apiUrl = '/api/authaccount/login';
+      String apiUrl = '/api/authaccount/login';
 
-    var res = await Api().authaccount(data, apiUrl);
-    var body = LoginModel.fromJson(jsonDecode(res.body));
+      var res = await Api().authaccount(data, apiUrl);
+      var body = LoginModel.fromJson(jsonDecode(res.body));
 
-    if (body.code == 0) {
-      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      if (body.code == 0) {
+        SharedPreferences localStorage = await SharedPreferences.getInstance();
 
-      localStorage.setString('token', json.encode(body.data!.token));
-      localStorage.setString('name', json.encode(body.data!.name));
+        localStorage.setString('token', json.encode(body.data!.token));
+        localStorage.setString('name', json.encode(body.data!.name));
 
-      // ignore: use_build_context_synchronously
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) {
-          return SenaraiPenggunaScreen();
-        }),
-      );
-    } else {
-      print(body.code);
+        // ignore: use_build_context_synchronously
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) {
+            return SenaraiPenggunaScreen();
+          }),
+        );
+      } else {
+        print(body.code);
+      }
     }
   }
 }
