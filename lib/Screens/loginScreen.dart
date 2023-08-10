@@ -18,6 +18,14 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    emailController.text = 'Developer5@gmail.com';
+    passwordController.text = '123456';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 TextFormField(
                   controller: emailController,
+                  // initialValue: 'Developer5@gmail.com',
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
@@ -109,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       localStorage.setString('token', json.encode(body.data!.token));
       localStorage.setString('name', json.encode(body.data!.name));
-      
+
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) {

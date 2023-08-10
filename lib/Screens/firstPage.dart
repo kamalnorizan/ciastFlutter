@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:myflutter/Screens/loginScreen.dart';
 import 'package:myflutter/Screens/senaraiPenggunaScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Model/user.dart';
 import 'userDetailScreen.dart';
@@ -36,6 +38,24 @@ class _FirstPageState extends State<FirstPage> {
         appBar: AppBar(
           title: const Text('Borang Pendaftaran'),
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          actions: [
+            IconButton(
+              onPressed: () async {
+                SharedPreferences localStorage =
+                    await SharedPreferences.getInstance();
+
+                localStorage.remove('token');
+                localStorage.remove('name');
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LoginScreen(),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.logout),
+            )
+          ],
         ),
         body: SingleChildScrollView(
           child: Padding(
