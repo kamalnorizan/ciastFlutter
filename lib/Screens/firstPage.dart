@@ -175,8 +175,7 @@ class _FirstPageState extends State<FirstPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  SenaraiPenggunaScreen(userList),
+                              builder: (context) => SenaraiPenggunaScreen(),
                             ),
                           );
                         },

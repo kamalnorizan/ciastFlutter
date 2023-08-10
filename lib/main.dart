@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myflutter/Screens/senaraiPenggunaScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Screens/firstPage.dart';
@@ -91,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => FirstPage(),
+          builder: (context) => SenaraiPenggunaScreen(),
         ),
       );
     } else {

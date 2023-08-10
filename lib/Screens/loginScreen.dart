@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:myflutter/Model/loginModel.dart';
 import 'package:myflutter/Screens/firstPage.dart';
+import 'package:myflutter/Screens/senaraiPenggunaScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Network/api.dart';
@@ -119,10 +120,11 @@ class _LoginScreenState extends State<LoginScreen> {
       localStorage.setString('token', json.encode(body.data!.token));
       localStorage.setString('name', json.encode(body.data!.name));
 
+      // ignore: use_build_context_synchronously
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) {
-          return FirstPage();
+          return SenaraiPenggunaScreen();
         }),
       );
     } else {

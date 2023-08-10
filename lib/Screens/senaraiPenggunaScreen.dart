@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../Model/user.dart';
+import '../Model/userRequestModel.dart';
 
 class SenaraiPenggunaScreen extends StatefulWidget {
-  List<User> userList = [];
-  SenaraiPenggunaScreen(this.userList, {super.key});
+  final List<UserModel> userList = [];
+  SenaraiPenggunaScreen({super.key});
 
   @override
   State<SenaraiPenggunaScreen> createState() => _SenaraiPenggunaScreenState();
@@ -23,12 +24,12 @@ class _SenaraiPenggunaScreenState extends State<SenaraiPenggunaScreen> {
               itemBuilder: (context, index) {
                 return ListTile(
                   leading: const CircleAvatar(),
-                  title: Text(widget.userList[index].nama.toString()),
-                  subtitle: Text(widget.userList[index].ic.toString()),
+                  title: Text(widget.userList[index].name.toString()),
+                  subtitle: Text(widget.userList[index].email.toString()),
                   trailing: const Icon(Icons.arrow_forward_ios),
                 );
               })
-          : const Center(child: Text('Tiada data')),
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 }
