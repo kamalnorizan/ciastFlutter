@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:myflutter/Model/loginModel.dart';
+import 'package:myflutter/Screens/firstPage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Network/api.dart';
 
@@ -18,7 +23,10 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 30,
+            vertical: 80,
+          ),
           width: double.infinity,
           child: Form(
             key: _formKey,
@@ -58,10 +66,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           login();
                         },
-                        child: const Text('Login'),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,
                             foregroundColor: Colors.white),
+                        child: const Text('Login'),
                       ),
                     ),
                     const SizedBox(
@@ -94,6 +102,22 @@ class _LoginScreenState extends State<LoginScreen> {
     String apiUrl = '/api/authaccount/login';
 
     var res = await Api().authaccount(data, apiUrl);
-    print(res.body);
+    var body = LoginModel.fromJson(jsonDecode(res.body));
+
+    if (body.code == 0) {
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+
+      localStorage.setString('token', json.encode(body.data!.token));
+      localStorage.setString('name', json.encode(body.data!.name));
+      
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return FirstPage();
+        }),
+      );
+    } else {
+      print(body.code);
+    }
   }
 }
