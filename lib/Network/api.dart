@@ -23,8 +23,7 @@ class Api {
     String _token = localStorage.getString('token')!;
 
     Map<String, String> headers = {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer 6dbda68b-7658-49b9-9d47-e8cf42550405'
+      'Authorization': 'Bearer $_token',
     };
 
     var fullUrl = _url + apiUrl;

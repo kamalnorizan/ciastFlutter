@@ -136,8 +136,8 @@ class _LoginScreenState extends State<LoginScreen> {
       if (body.code == 0) {
         SharedPreferences localStorage = await SharedPreferences.getInstance();
 
-        localStorage.setString('token', json.encode(body.data!.token));
-        localStorage.setString('name', json.encode(body.data!.name));
+        localStorage.setString('token', body.data!.token.toString());
+        localStorage.setString('name', body.data!.name.toString());
 
         // ignore: use_build_context_synchronously
         Navigator.pushReplacement(
